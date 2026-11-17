@@ -710,7 +710,7 @@ html{scroll-behavior:smooth}body{color:var(--text);background:radial-gradient(el
   <div id="stage" class="card stage"></div>
 </div>
 </section>
-<section id="ranking" class="page hidden"><div class="card"><h2 class="title">🏆 Ranking general</h2><p class="sub">Se suma el mejor puntaje de cada juego. En caso de empate, queda arriba quien consiguió esos resultados en menor tiempo total.</p><button id="refresh" class="btn primary">🔄 Actualizar</button> <button id="testConnection" class="btn soft" type="button">🔌 Probar conexión</button><div id="rankStatus" class="muted" style="margin:12px 0"></div><div id="rank" class="leader"></div></div></section>
+<section id="ranking" class="page hidden"><div class="card"><h2 class="title">🏆 Ranking general</h2><p class="sub">Se suma el mejor puntaje de cada juego. En caso de empate, queda arriba quien consiguió esos resultados en menor tiempo total.</p><button id="refresh" class="btn primary">🔄 Actualizar</button><div id="rankStatus" class="muted" style="margin:12px 0"></div><div id="rank" class="leader"></div></div></section>
 </main>
 <script>
 const API='https://script.google.com/macros/s/AKfycbxLXCQX4nIN1luKj68HLqM8dUHCGcozvqVJ_8PuqhkfT3lLYjujNmuxl88FiDQdh-m6sA/exec';
@@ -1297,14 +1297,7 @@ async function loadRanking(){
  });
 }
 document.getElementById('refresh').onclick=loadRanking;
-document.getElementById('testConnection').onclick=async()=>{
- const st=document.getElementById('rankStatus');st.textContent='🔌 Comprobando la conexión con el Apps Script…';
- try{
-  const r=await remoteGet('status');
-  if(r&&r.ok&&r.version==='quimica-8-juegos-v2')st.textContent='✅ Conectado a la misma hoja de cálculo. Apps Script actualizado para los 8 juegos.';
-  else st.textContent='⚠️ Se detectó una versión antigua o incompatible de Apps Script. Reemplazá el código y publicá una nueva versión.';
- }catch(e){st.textContent='❌ No se pudo consultar el Apps Script. Revisá que el acceso sea «Cualquier persona» y volvé a implementar.'}
-};
+
 </script>
 </body>
 </html>
